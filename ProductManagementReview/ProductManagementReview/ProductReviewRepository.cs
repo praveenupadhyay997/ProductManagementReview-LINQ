@@ -89,6 +89,22 @@ namespace ProductManagementReview
                 Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
             }
         }
+        /// <summary>
+        /// UC3 -- Method to display the entire product review by the users for three plus rating and product id = 1001,1004 or 1009
+        /// </summary>
+        public void DisplayTopProductReviewDetailsForGreaterThanThreeRating()
+        {
+            ///Query to get product review details with rating greater than three and particular id
+            var threePlusRatingAndSpecificId = (from reviews in productReviews.AsEnumerable()
+                                                where (reviews.rating > 3) && (reviews.productId == 1001 || reviews.productId == 1004 || reviews.productId == 1009)
+                                                select reviews);
+            /// Iterating over the entire list
+            /// Displaying the product reviews
+            foreach (var record in threePlusRatingAndSpecificId)
+            {
+                Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
+            }
+        }
     }
 }
 
