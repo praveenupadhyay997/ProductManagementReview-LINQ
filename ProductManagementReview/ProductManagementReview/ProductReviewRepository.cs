@@ -73,6 +73,22 @@ namespace ProductManagementReview
                 Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
             }
         }
+        /// <summary>
+        /// UC2 -- Method to display the entire product review by the users for top 3 highly rated products
+        /// </summary>
+        public void DisplayTopThreeRatedProductReviewDetails()
+        {
+            ///Query to get the top highly rated product review details
+            var topThreeRated = (from reviews in productReviews.AsEnumerable()
+                                 orderby reviews.rating descending
+                                 select reviews).Take(3);
+            /// Iterating over the entire list
+            /// Displaying the product reviews
+            foreach (var record in topThreeRated)
+            {
+                Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
+            }
+        }
     }
 }
 

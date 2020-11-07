@@ -22,6 +22,8 @@ namespace ProductManagementReview
             ProductReviewRepository productReview = new ProductReviewRepository();
             /// Printing the details stored inside the reviews
             productReview.DisplayTheProductReviewDetails();
+            /// UC2 -- Get the top three highly rated record details
+            productReview.DisplayTopThreeRatedProductReviewDetails();
         }
     }
 }
