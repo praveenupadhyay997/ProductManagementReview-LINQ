@@ -1,0 +1,78 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ProductReviewRepository.cs" company="Bridgelabz">
+//   Copyright © 2018 Company
+// </copyright>
+// <creator Name="Praveen Kumar Upadhyay"/>
+// --------------------------------------------------------------------------------------------------------------------
+namespace ProductManagementReview
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    /// <summary>
+    /// Class to store the list of the reviews passed by the user of ProductReviewClass type
+    /// </summary>
+    public class ProductReviewRepository
+    {
+        /// <summary>
+        /// List containing the product reiews of the users
+        /// </summary>
+        public static List<ProductReviewClass> productReviews = new List<ProductReviewClass>();
+        /// <summary>
+        /// Default Constructor to initialise the instance with 25 default values adding the values to the list
+        /// </summary>
+        public ProductReviewRepository()
+        {
+            for (int i = 0; i < 25; i++)
+            {
+                /// Declaring a random object to create random values for useId
+                Random random = new Random();
+                int randomUserId = random.Next(1100, 1199);
+                /// Creating random Product rating
+                int randomRating = random.Next(0, 6);
+                string review = "";
+                /// Moderating the rating to an expression for revie
+                /// from 0- Poor to 5- Excellent
+                switch (randomRating)
+                {
+                    case 0:
+                        review = "Poor";
+                        break;
+                    case 1:
+                        review = "Fairly Poor";
+                        break;
+                    case 2:
+                        review = "Average";
+                        break;
+                    case 3:
+                        review = "Above Average";
+                        break;
+                    case 4:
+                        review = "Good";
+                        break;
+                    case 5:
+                        review = "Excellent";
+                        break;
+                    default:
+                        break;
+                }
+                /// Adding to the list of product reviews
+                productReviews.Add(new ProductReviewClass(i + 1000, randomUserId, randomRating, review));
+            }
+        }
+        /// <summary>
+        /// Method to display the entire product review by the users
+        /// </summary>
+        public void DisplayTheProductReviewDetails()
+        {
+            /// Iterating over the entire list
+            /// Displaying the product reviews
+            foreach (var record in productReviews)
+            {
+                Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
+            }
+        }
+    }
+}
+
