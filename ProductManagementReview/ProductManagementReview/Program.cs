@@ -26,6 +26,8 @@ namespace ProductManagementReview
             productReview.DisplayTopThreeRatedProductReviewDetails();
             /// UC3 -- Get the product review for product rating greater than three and particular product Id
             productReview.DisplayTopProductReviewDetailsForGreaterThanThreeRating();
+            /// UC3 -- Get the product review for  and particular product Id
+            productReview.DisplayReviewCountForProductID();
         }
     }
 }
