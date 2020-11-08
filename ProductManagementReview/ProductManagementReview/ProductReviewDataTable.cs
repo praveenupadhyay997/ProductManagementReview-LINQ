@@ -88,6 +88,20 @@ namespace ProductManagementReview
                     $" Review : {record.Field<string>("Review")}, isLike: {record.Field<bool>("isLike")}");
             }
         }
-
+        /// <summary>
+        /// Method to get the data of the records from the product review data table with is like as true
+        /// </summary>
+        public static void DisplayRecordWithTrueIsLike()
+        {
+            /// LINQ query syntax to get the records with isLike as true
+            var trueIsLike = (from product in productReviews.AsEnumerable()
+                              where product.Field<bool>("isLike") == true select product);
+            /// Iterating over records stored to print the reviews
+            foreach(var review in trueIsLike)
+            {
+                Console.WriteLine($"ProductId : {review.Field<int>("ProductId")}, UserId : {review.Field<int>("UserId")}, Rating : {review.Field<int>("Rating")}," +
+                    $" Review : {review.Field<string>("Review")}, isLike: {review.Field<bool>("isLike")}");
+            }
+        }
     }
 }
