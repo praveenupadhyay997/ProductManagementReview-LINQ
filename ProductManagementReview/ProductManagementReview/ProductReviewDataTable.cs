@@ -9,6 +9,7 @@ namespace ProductManagementReview
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Linq;
     using System.Text;
     /// <summary>
     /// Class to define the Product Review Management as Data table
@@ -42,6 +43,7 @@ namespace ProductManagementReview
             {
                 /// Declaring a random object to create random values for useId
                 Random random = new Random();
+                int randomProductId = random.Next(1, 10);
                 int randomUserId = random.Next(1100, 1199);
                 /// Creating random Product rating
                 int randomRating = random.Next(0, 6);
@@ -73,7 +75,7 @@ namespace ProductManagementReview
                 }
                 bool randomIsLike = random.Next(0, 2) > 0;
                 /// Adding to the list of product reviews
-                productReviews.Rows.Add(i + 1000, randomUserId, randomRating, review, randomIsLike);
+                productReviews.Rows.Add(randomProductId, randomUserId, randomRating, review, randomIsLike);
             }
         }
         /// <summary>
@@ -101,6 +103,21 @@ namespace ProductManagementReview
             {
                 Console.WriteLine($"ProductId : {review.Field<int>("ProductId")}, UserId : {review.Field<int>("UserId")}, Rating : {review.Field<int>("Rating")}," +
                     $" Review : {review.Field<string>("Review")}, isLike: {review.Field<bool>("isLike")}");
+            }
+        }
+        /// <summary>
+        /// Method to get the average rating for each product from the product review data table
+        /// </summary>
+        public static void DisplayAverageRatingForProductId()
+        {
+            /// LINQ query syntax to get the average rating of the products grouped by product id
+            var displayCountOfProductReview = (from reviews in productReviews.AsEnumerable()
+                              group reviews by reviews.Field<int>("ProductId") into Group
+                              select new { ProductID = Group.Key, AverageRating = Group.Average(row => row.Field<int>("Rating")) });
+            /// Iterating over records stored to print the reviews
+            foreach (var review in displayCountOfProductReview)
+            {
+                Console.WriteLine($"ProductId : {review.ProductID}, Average Rating : {review.AverageRating}");
             }
         }
     }

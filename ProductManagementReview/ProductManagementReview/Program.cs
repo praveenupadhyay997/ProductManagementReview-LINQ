@@ -36,8 +36,10 @@ namespace ProductManagementReview
             ProductReviewDataTable.AddingColumns();
             ProductReviewDataTable.AddData();
             ProductReviewDataTable.DisplayDataInTable();
-            ///UC2 -- Getting all the product reviews for is like as true
+            /// UC9 -- Getting all the product reviews for is like as true
             ProductReviewDataTable.DisplayRecordWithTrueIsLike();
+            /// UC10 -- Gettingthe average rating for all the product Id's
+            ProductReviewDataTable.DisplayAverageRatingForProductId();
         }
             /// <summary>
             /// Main Driver function
