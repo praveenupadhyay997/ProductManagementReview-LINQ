@@ -10,6 +10,8 @@ namespace ProductManagementReview
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
+    using System.Text.RegularExpressions;
+
     /// <summary>
     /// Class to store the list of the reviews passed by the user of ProductReviewClass type
     /// </summary>
@@ -103,6 +105,22 @@ namespace ProductManagementReview
             foreach (var record in threePlusRatingAndSpecificId)
             {
                 Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
+            }
+        }
+        /// <summary>
+        /// UC4 -- Method to display the entire count of number of reviews by productId
+        /// </summary>
+        public void DisplayReviewCountForProductID()
+        {
+            ///Query to get number of product review details  grouped by same productId
+            var threePlusRatingAndSpecificId = (from reviews in productReviews.AsEnumerable()
+                                                group reviews by reviews.productId into Group
+                                                select new {ProductID = Group.Key, NumberOfReviews = Group.Count()});
+            /// Iterating over the entire stored value with count and productId
+            /// Displaying the reviews count
+            foreach (var record in threePlusRatingAndSpecificId)
+            {
+                Console.WriteLine($"ProductId : {record.ProductID}, Number Of Reviews : {record.NumberOfReviews}");
             }
         }
     }
