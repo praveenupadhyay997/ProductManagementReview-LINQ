@@ -138,5 +138,20 @@ namespace ProductManagementReview
                 Console.WriteLine($"ProductId : {record.ProductID}, Review : {record.Review}");
             }
         }
+        /// <summary>
+        /// UC6 -- Method to display the product review detail by skipping the top five records
+        /// </summary>
+        public void SkipTheTopFiveRecords()
+        {
+            ///Query to get the product review detail skipping the first five records
+            var topThreeRated = (from reviews in productReviews.AsEnumerable()
+                                 select reviews).Skip(5);
+            /// Iterating over the entire list
+            /// Displaying the product reviews
+            foreach (var record in topThreeRated)
+            {
+                Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
+            }
+        }
     }
 }
