@@ -123,6 +123,20 @@ namespace ProductManagementReview
                 Console.WriteLine($"ProductId : {record.ProductID}, Number Of Reviews : {record.NumberOfReviews}");
             }
         }
+        /// <summary>
+        /// UC5 -- Method to display the reviews and productId
+        /// </summary>
+        public void DisplayProductIDAndReview()
+        {
+            ///Query to get number of product review details  grouped by same productId
+            var productIDAndReview = (from reviews in productReviews.AsEnumerable()
+                                                select new { ProductID = reviews.productId, Review = reviews.review});
+            /// Iterating over the entire stored value with review and productId
+            /// Displaying the reviews count
+            foreach (var record in productIDAndReview)
+            {
+                Console.WriteLine($"ProductId : {record.ProductID}, Review : {record.Review}");
+            }
+        }
     }
 }
-
