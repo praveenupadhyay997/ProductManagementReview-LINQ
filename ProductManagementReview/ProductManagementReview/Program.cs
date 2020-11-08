@@ -9,15 +9,8 @@ namespace ProductManagementReview
     using System;
     class Program
     {
-        /// <summary>
-        /// Main Driver function
-        /// </summary>
-        /// <param name="args"></param>
-        static void Main(string[] args)
+        public static void ClassInterpretation()
         {
-            Console.WriteLine("===================================");
-            Console.WriteLine("Welcome to Product Review Program");
-            Console.WriteLine("===================================");
             /// Creating the instance of the product review repository
             ProductReviewRepository productReview = new ProductReviewRepository();
             /// Printing the details stored inside the reviews
@@ -34,6 +27,40 @@ namespace ProductManagementReview
             productReview.SkipTheTopFiveRecords();
             /// UC7 -- Get the product review and product Id Using the Lambda Syntax
             productReview.DisplayProductIDAndReviewUsingLambdaSyntax();
+        }
+        public static void DataTableInterpretation()
+        {
+            /// By default adding of column is required to initiate the process of performing the data operation
+            /// Additionally we can define the adding of column and adding data in static constructor of ProductReviewDataTable.cs
+            /// So as to execute it automatically when the first instance of the Product Review Data Table Class is created
+            ProductReviewDataTable.AddingColumns();
+            ProductReviewDataTable.AddData();
+            ProductReviewDataTable.DisplayDataInTable();
+        }
+            /// <summary>
+            /// Main Driver function
+            /// </summary>
+            /// <param name="args"></param>
+            static void Main(string[] args)
+        {
+            Console.WriteLine("===================================");
+            Console.WriteLine("Welcome to Product Review Program");
+            Console.WriteLine("===================================");
+            Console.WriteLine("1. List Interpretation.");
+            Console.WriteLine("2. Data Table Interpretation.");
+            int choice = Convert.ToInt32(Console.ReadLine());
+            /// Enabling the user choice to work on different platforms
+            switch(choice)
+            {
+                case 1:
+                    Program.ClassInterpretation();
+                    break;
+                case 2:
+                    Program.DataTableInterpretation();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
