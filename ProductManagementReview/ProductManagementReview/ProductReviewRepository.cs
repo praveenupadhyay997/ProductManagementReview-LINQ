@@ -153,5 +153,19 @@ namespace ProductManagementReview
                 Console.WriteLine($"ProductId : {record.productId}, UserId : {record.userId}, Rating : {record.rating}, Review : {record.review}");
             }
         }
+        /// <summary>
+        /// UC7 -- Method to display the reviews and productId using the lambda expression syntax
+        /// </summary>
+        public void DisplayProductIDAndReviewUsingLambdaSyntax()
+        {
+            ///Query to get number of product review details  grouped by same productId
+            var productIDAndReview = productReviews.Select (reviews => new { ProductID = reviews.productId, Review = reviews.review });
+            /// Iterating over the entire stored value with review and productId
+            /// Displaying the reviews count
+            foreach (var record in productIDAndReview)
+            {
+                Console.WriteLine($"ProductId : {record.ProductID}, Review : {record.Review}");
+            }
+        }
     }
 }
