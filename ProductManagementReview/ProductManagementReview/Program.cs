@@ -36,6 +36,8 @@ namespace ProductManagementReview
             ProductReviewDataTable.AddingColumns();
             ProductReviewDataTable.AddData();
             ProductReviewDataTable.DisplayDataInTable();
+            ///UC2 -- Getting all the product reviews for is like as true
+            ProductReviewDataTable.DisplayRecordWithTrueIsLike();
         }
             /// <summary>
             /// Main Driver function
