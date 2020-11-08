@@ -40,6 +40,8 @@ namespace ProductManagementReview
             ProductReviewDataTable.DisplayRecordWithTrueIsLike();
             /// UC10 -- Gettingthe average rating for all the product Id's
             ProductReviewDataTable.DisplayAverageRatingForProductId();
+            /// UC11 -- Getting all the product reviews for review as "Nice" by the user
+            ProductReviewDataTable.DisplayRecordWithReviewAsNice();
         }
             /// <summary>
             /// Main Driver function
