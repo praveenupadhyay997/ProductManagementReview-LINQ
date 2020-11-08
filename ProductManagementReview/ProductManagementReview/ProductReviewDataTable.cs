@@ -65,7 +65,7 @@ namespace ProductManagementReview
                         review = "Above Average";
                         break;
                     case 4:
-                        review = "Good";
+                        review = "Nice";
                         break;
                     case 5:
                         review = "Excellent";
@@ -118,6 +118,22 @@ namespace ProductManagementReview
             foreach (var review in displayCountOfProductReview)
             {
                 Console.WriteLine($"ProductId : {review.ProductID}, Average Rating : {review.AverageRating}");
+            }
+        }
+        /// <summary>
+        /// Method to get the data of the records from the product review data table with review as "Nice"
+        /// </summary>
+        public static void DisplayRecordWithReviewAsNice()
+        {
+            /// LINQ query syntax to get the records with review as nice
+            var trueIsLike = (from product in productReviews.AsEnumerable()
+                              where product.Field<string>("Review") == "Nice"
+                              select product);
+            /// Iterating over records stored to print the reviews
+            foreach (var review in trueIsLike)
+            {
+                Console.WriteLine($"ProductId : {review.Field<int>("ProductId")}, UserId : {review.Field<int>("UserId")}, Rating : {review.Field<int>("Rating")}," +
+                    $" Review : {review.Field<string>("Review")}, isLike: {review.Field<bool>("isLike")}");
             }
         }
     }
