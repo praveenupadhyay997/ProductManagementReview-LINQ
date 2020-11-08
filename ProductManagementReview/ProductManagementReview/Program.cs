@@ -9,7 +9,7 @@ namespace ProductManagementReview
     using System;
     class Program
     {
-        public static void ClassInterpretation()
+        public static void ListInterpretation()
         {
             /// Creating the instance of the product review repository
             ProductReviewRepository productReview = new ProductReviewRepository();
@@ -42,6 +42,8 @@ namespace ProductManagementReview
             ProductReviewDataTable.DisplayAverageRatingForProductId();
             /// UC11 -- Getting all the product reviews for review as "Nice" by the user
             ProductReviewDataTable.DisplayRecordWithReviewAsNice();
+            /// UC12 -- Ordering review for user id = 10
+            ProductReviewDataTable.DisplayReviewRecordOfUserIdBasedOnRating();
         }
             /// <summary>
             /// Main Driver function
@@ -59,7 +61,7 @@ namespace ProductManagementReview
             switch(choice)
             {
                 case 1:
-                    Program.ClassInterpretation();
+                    Program.ListInterpretation();
                     break;
                 case 2:
                     Program.DataTableInterpretation();

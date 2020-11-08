@@ -76,6 +76,9 @@ namespace ProductManagementReview
                 bool randomIsLike = random.Next(0, 2) > 0;
                 /// Adding to the list of product reviews
                 productReviews.Rows.Add(randomProductId, randomUserId, randomRating, review, randomIsLike);
+                /// UC12 -- Limiting entry to only 6 records for a particular User-Id
+                if(i%4 == 0)
+                productReviews.Rows.Add(randomProductId, 10, randomRating, review, randomIsLike);
             }
         }
         /// <summary>
@@ -128,6 +131,23 @@ namespace ProductManagementReview
             /// LINQ query syntax to get the records with review as nice
             var trueIsLike = (from product in productReviews.AsEnumerable()
                               where product.Field<string>("Review") == "Nice"
+                              select product);
+            /// Iterating over records stored to print the reviews
+            foreach (var review in trueIsLike)
+            {
+                Console.WriteLine($"ProductId : {review.Field<int>("ProductId")}, UserId : {review.Field<int>("UserId")}, Rating : {review.Field<int>("Rating")}," +
+                    $" Review : {review.Field<string>("Review")}, isLike: {review.Field<bool>("isLike")}");
+            }
+        }
+        /// <summary>
+        /// Method to get the data of the records from the product review data table reviewd by user-id with id as 10 and order his reviews by rating
+        /// </summary>
+        public static void DisplayReviewRecordOfUserIdBasedOnRating()
+        {
+            /// LINQ query syntax to get the records with user id =10 and ordered by Rating
+            var trueIsLike = (from product in productReviews.AsEnumerable()
+                              orderby product.Field<int>("Rating")
+                              where product.Field<int>("UserId") == 10
                               select product);
             /// Iterating over records stored to print the reviews
             foreach (var review in trueIsLike)
